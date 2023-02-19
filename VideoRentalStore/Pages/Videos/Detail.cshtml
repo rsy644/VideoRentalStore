@@ -1,0 +1,51 @@
+﻿@page "{videoId:int}"
+@model VideoRentalStore.Pages.Videos.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "_LayoutSpecial";
+}
+
+<div class="row">
+    <div class="col-md-12"><h1>@Model.Video.Title</h1></div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        @if (Model.CommitMessage != null)
+        {
+            TempData.Keep("CommitMessage");
+            <div class="alert alert-info">@Model.CommitMessage</div>
+        }
+
+        <div>
+            Catalog ID: @Model.Video.Id
+        </div>
+
+        <div>
+            Release Date: @Model.Video.ReleaseDate.ToString("dd MMMM yyyy")
+        </div>
+        <div>
+            Genre: @Model.Video.Genre
+        </div>
+        <div>
+            <videoPrice video-price="@Model.Video.Price" culture-name="en-GB" label="Price: "></videoPrice>
+        </div>
+        <div>
+            Lent Out: @Html.CheckBoxFor(x => x.Video.LentOut)
+        </div>
+
+        @if (Model.Video.LentOut == true)
+        {
+            <div>
+                Lent to: @Model.Video.LentTo
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        <partial name="_VideoStats" model="Model.Video" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"><a asp-page="./List" class="btn btn-outline-primary">Back to Videos</a></div>
+</div>

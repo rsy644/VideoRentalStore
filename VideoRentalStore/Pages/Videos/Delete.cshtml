@@ -1,0 +1,43 @@
+﻿@page "{videoId:int?}"
+@using VideoRentalStore.Core;
+@model VideoRentalStore.Pages.Videos.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Are you sure you want to delete @Model.Video.Title?</h2>
+
+<form method="post" class="delete-video">
+    <input type="hidden" asp-for="Video.Id" />
+    <div class="form-group">
+        <label asp-for="Video.Title"></label>:
+        <p>@Model.Video.Title</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Video.ReleaseDate"></label>:
+        <p>@Model.Video.ReleaseDate</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Video.Price"></label>:
+        <p>@Model.Video.Price</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Video.LentOut"></label>:
+        <p>@Model.Video.LentOut</p>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Video.LentTo"></label>:
+        <p>@Model.Video.LentTo</p>
+
+    </div>
+
+    <span class="delete-buttons">
+        <button type="submit" class="btn border-primary">Yes</button>
+        <button class="btn border-light">No</button>
+    </span>
+</form>
+
